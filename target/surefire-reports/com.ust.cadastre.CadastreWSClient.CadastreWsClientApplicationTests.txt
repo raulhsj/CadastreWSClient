@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ust.cadastre.CadastreWSClient.CadastreWsClientApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.205 sec - in com.ust.cadastre.CadastreWSClient.CadastreWsClientApplicationTests

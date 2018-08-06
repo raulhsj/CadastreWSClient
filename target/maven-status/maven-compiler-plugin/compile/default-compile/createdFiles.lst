@@ -1,0 +1,11 @@
+com\ust\cadastre\CadastreWSClient\CadastreWsClientApplication.class
+com\ust\cadastre\CadastreWSClient\controller\CadastreAPIImpl.class
+com\ust\cadastre\CadastreWSClient\client\CadastreFindByCadastreRefClient.class
+com\ust\cadastre\CadastreWSClient\config\WSCatastroConfiguration.class
+com\ust\cadastre\CadastreWSClient\controller\CadastreAPI.class
+com\ust\cadastre\CadastreWSClient\service\CadastreFindServiceImpl.class
+com\ust\cadastre\CadastreWSClient\dao\CadastreDaoImpl$2.class
+com\ust\cadastre\CadastreWSClient\service\CadastreFindService.class
+com\ust\cadastre\CadastreWSClient\dao\CadastreDao.class
+com\ust\cadastre\CadastreWSClient\dao\CadastreDaoImpl.class
+com\ust\cadastre\CadastreWSClient\dao\CadastreDaoImpl$1.class

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CadastreDaoImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CadastreWSClient</a> &gt; <a href="index.source.html" class="el_package">com.ust.cadastre.CadastreWSClient.dao</a> &gt; <span class="el_source">CadastreDaoImpl.java</span></div><h1>CadastreDaoImpl.java</h1><pre class="source lang-java linenums">package com.ust.cadastre.CadastreWSClient.dao;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import javax.xml.soap.SOAPEnvelope;
+import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPMessage;
+
+import org.springframework.ws.WebServiceMessage;
+import org.springframework.ws.client.core.WebServiceMessageCallback;
+import org.springframework.ws.client.core.WebServiceMessageExtractor;
+import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import org.springframework.ws.soap.saaj.SaajSoapMessage;
+import org.w3c.dom.DOMException;
+
+
+<span class="fc" id="L18">public class CadastreDaoImpl extends WebServiceGatewaySupport implements CadastreDao {</span>
+
+<span class="fc" id="L20">	private final String ACTION = &quot;http://tempuri.org/OVCServWeb/OVCCallejero/Consulta_DNPRC&quot;;</span>
+	
+	@Override
+	public Double getSurfaceByRefCatastro(String refCatastro) throws URISyntaxException {
+		
+<span class="fc" id="L25">		String surface = (String)getWebServiceTemplate().sendAndReceive(getDefaultUri(), new WebServiceMessageCallback() {</span>
+			public void doWithMessage(WebServiceMessage message) {
+	            try {
+<span class="fc" id="L28">	            	SaajSoapMessage saajMessage = (SaajSoapMessage) message;</span>
+<span class="fc" id="L29">	            	saajMessage.setSoapAction(ACTION);</span>
+<span class="fc" id="L30">	                SOAPMessage soapmess = saajMessage.getSaajMessage();</span>
+<span class="fc" id="L31">	                SOAPEnvelope env = soapmess.getSOAPPart().getEnvelope();</span>
+<span class="fc" id="L32">	                env.addNamespaceDeclaration(&quot;cat&quot;, &quot;http://www.catastro.meh.es/&quot;);</span>
+	                
+<span class="fc" id="L34">	                env.getBody().addChildElement(&quot;RefCat&quot;, &quot;cat&quot;).addTextNode(refCatastro.trim());</span>
+	            	
+<span class="nc" id="L36">	            } catch (Exception e) {</span>
+<span class="nc" id="L37">	            	throw new RuntimeException(&quot;Marshalling exception&quot;, e);  </span>
+<span class="fc" id="L38">	            }</span>
+				
+<span class="fc" id="L40">	        }</span>
+<span class="fc" id="L41">		}, new WebServiceMessageExtractor&lt;Object&gt;() {</span>
+
+			public Object extractData(WebServiceMessage response) throws IOException {
+				
+<span class="fc" id="L45">				SaajSoapMessage saajMessage = (SaajSoapMessage)response;</span>
+<span class="fc" id="L46">				SOAPMessage soapmess = saajMessage.getSaajMessage();</span>
+				String value;
+				try {
+<span class="fc" id="L49">					value = soapmess.getSOAPBody().getElementsByTagName(&quot;sfc&quot;).item(0).getTextContent();</span>
+<span class="nc" id="L50">				} catch (DOMException e) {</span>
+<span class="nc" id="L51">					throw new RuntimeException(&quot;Marshalling exception&quot;, e);</span>
+<span class="nc" id="L52">				} catch (SOAPException e) {</span>
+<span class="nc" id="L53">					throw new RuntimeException(&quot;Marshalling exception&quot;, e);</span>
+<span class="fc" id="L54">				}</span>
+				
+<span class="fc" id="L56">				return value;</span>
+			}
+		});
+		
+<span class="fc" id="L60">		System.out.println (surface);</span>
+<span class="fc" id="L61">		return Double.valueOf(surface);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
