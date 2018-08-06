@@ -12,9 +12,9 @@ public class CadastreFindServiceImpl implements CadastreFindService{
 
 	@Autowired
 	CadastreDao cadastreDao;
-	
+
 	@Override
-	public Double getSurfaceByCadastreRef(String cadastreRef) throws URISyntaxException {
+	public Double findByCadastreRef(String cadastreRef) throws URISyntaxException {
 		return cadastreDao.getSurfaceByRefCatastro(cadastreRef);
 	}
 

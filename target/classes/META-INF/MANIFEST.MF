@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: CadastreWSClient
+Implementation-Version: 0.1.0-SNAPSHOT
+Built-By: jdgarcia
+Implementation-Vendor-Id: com.ust.cadastre
+Build-Jdk: 1.8.0_171
+Implementation-URL: http://projects.spring.io/spring-boot/CadastreWSCl
+ ient/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

@@ -29,7 +29,7 @@ public class CadastreAPIImpl implements CadastreAPI{
 	@GetMapping(path = "/surface/{cadastreRef}")
 	public Double findByCadastreRef(@ApiParam(value="Cadastre Ref") 
 						@PathVariable(required=true) String cadastreRef) throws URISyntaxException {
-		return cadastreFindService.getSurfaceByCadastreRef(cadastreRef);
+		return cadastreFindService.findByCadastreRef(cadastreRef);
 	}
 
 }
